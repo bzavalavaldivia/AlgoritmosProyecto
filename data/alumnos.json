@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "codAlumno": 202010001,
+    "nombres": "Bryan Edmundo",
+    "apellidos": "Zavala Valdivia",
+    "dni": "72807811",
+    "edad": 24,
+    "celular": 943189289,
+    "estado": 2
+  }
+]

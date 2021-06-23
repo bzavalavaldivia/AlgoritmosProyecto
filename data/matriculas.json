@@ -1,0 +1,23 @@
+[
+  {
+    "numMatricula": 1,
+    "codAlumno": 202010001,
+    "codCurso": 123,
+    "fecha": "16/06/2021",
+    "hora": "10:30"
+  },
+  {
+    "numMatricula": 2,
+    "codAlumno": 202010001,
+    "codCurso": 124,
+    "fecha": "16/06/2021",
+    "hora": "10:30"
+  },
+  {
+    "numMatricula": 3,
+    "codAlumno": 202010001,
+    "codCurso": 123,
+    "fecha": "16/06/2021",
+    "hora": "10:30"
+  }
+]

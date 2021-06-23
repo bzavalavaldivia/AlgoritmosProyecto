@@ -76,4 +76,11 @@ public class ArregloAlumnos {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public int codigoCorrelativo() {
+		if (tamaño() == 0)
+			return 202010001;
+		else
+			return obtener(tamaño()-1).getCodAlumno() + 1;
+	}
 }

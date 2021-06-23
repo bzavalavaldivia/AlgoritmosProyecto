@@ -76,6 +76,19 @@ public class Alumno {
 		this.estado = estado;
 	}
 	
+	public String getTipoEstado(int estado) {
+		String tipo = null;
+		
+		if (estado == 0) {
+			tipo = "REGISTRADO";
+		} else if (estado == 1) {
+			tipo = "MATRICULADO";
+		} else if (estado == 2) {
+			tipo = "RETIRADO";
+		}
+		
+		return tipo;
+	}
 	
 	@Override
     public String toString() {

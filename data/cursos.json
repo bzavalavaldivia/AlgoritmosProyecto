@@ -1,0 +1,16 @@
+[
+  {
+    "codCurso": 123,
+    "asignatura": "DESARROLLO WEB",
+    "ciclo": 5,
+    "creditos": 8,
+    "horas": 36
+  },
+  {
+    "codCurso": 124,
+    "asignatura": "BASES DE DATOS",
+    "ciclo": 0,
+    "creditos": 9,
+    "horas": 56
+  }
+]

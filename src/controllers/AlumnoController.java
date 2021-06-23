@@ -17,13 +17,14 @@ public class AlumnoController {
 	}
 	
 	public String store(Alumno alumno) {
-		try {
+//		try {
+		System.out.println(alumno.getNombres());
 			alumnos.adicionar(alumno);
 			
 			return "Alumno registrado correctamente.";
-		} catch (Exception e) {
-			return "Hubo un error al registrar el alumno.";
-		}
+//		} catch (Exception e) {
+//			return "Hubo un error al registrar el alumno.";
+//		}
 	}
 	
 	public String update(int id, Alumno alumno) {

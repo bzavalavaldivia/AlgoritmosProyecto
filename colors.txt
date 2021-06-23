@@ -1,0 +1,17 @@
+Primary:
+57, 73, 171
+
+Primary Light:
+111, 116, 221
+
+Primary Dark:
+0, 34, 123
+
+Seconday:
+216, 27, 96
+
+Seconday Light:
+255, 92, 151
+
+Secondary Dark:
+160, 0, 55

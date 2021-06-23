@@ -55,4 +55,29 @@ public class Curso {
 	public void setHoras(int horas) {
 		this.horas = horas;
 	}
+	
+	public String getTipoCiclo(int estado) {
+		String tipo = null;
+		
+		if (estado == 0) {
+			tipo = "PRIMERO";
+		} else if (estado == 1) {
+			tipo = "SEGUNDO";
+		} else if (estado == 2) {
+			tipo = "TERCERO";
+		} else if (estado == 3) {
+			tipo = "CUARTO";
+		} else if (estado == 4) {
+			tipo = "QUINTO";
+		} else if (estado == 5) {
+			tipo = "SEXTO";
+		}
+		
+		return tipo;
+	}
+	
+	@Override
+    public String toString() {
+        return "cURSO [" + "codCurso=" + codCurso + ", asignatura=" + asignatura + ", ciclo=" + ciclo + ", creditos=" + creditos + ", horas=" + horas + "]";
+    }
 }

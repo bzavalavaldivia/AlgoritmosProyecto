@@ -76,4 +76,11 @@ public class ArregloMatriculas {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public int codigoCorrelativo() {
+		if (tamaño() == 0)
+			return 100001;
+		else
+			return obtener(tamaño()-1).getNumMatricula() + 1;
+	}
 }
