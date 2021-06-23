@@ -94,7 +94,7 @@ public class MatriculasEditar extends JDialog {
 		contentPanel.add(cboCodCurso);
 		
 		cboCodAlumno.setSelectedItem(matricula.getCodAlumno());
-		cboCodCurso.setSelectedItem(new ComboItem(ac.obtener(ac.buscarPorCodigo(matricula.getCodCurso())), getName()));
+		cboCodCurso.getModel().setSelectedItem(new ComboItem(ac.buscarPorCodigo(matricula.getCodCurso()).getAsignatura(), matricula.getCodCurso() + ""));
 		
 		{
 			JPanel buttonPane = new JPanel();

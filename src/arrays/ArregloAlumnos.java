@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import models.Alumno;
+import models.Curso;
 
 public class ArregloAlumnos {
 	private ArrayList<Alumno> alumnos;
@@ -45,6 +46,29 @@ public class ArregloAlumnos {
 	public void eliminar(int id) {
 		alumnos.remove(id);
 		grabarAlumnos();
+	}
+	
+	public Alumno buscarPorCodigo(int codAlumno) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getCodAlumno() == codAlumno) {
+				return obtener(i);
+			}
+		}
+		
+		return obtener(-1);
+	}
+	
+	public ArrayList<Curso> obtenerCursos(int codAlumno) {
+		ArrayList<Curso> cursos = new ArrayList<Curso>();
+		ArregloMatriculas am = new ArregloMatriculas();
+		ArregloCursos ac = new ArregloCursos();
+		for (int i = 0; i < am.tamaño(); i++) {
+			if (am.obtener(i).getCodAlumno() == codAlumno) {
+				cursos.add(ac.buscarPorCodigo(am.obtener(i).getCodCurso()));
+			}
+		}
+		
+		return cursos;
 	}
 	
 	public ArrayList<Alumno> getAlumnos() {
@@ -82,5 +106,43 @@ public class ArregloAlumnos {
 			return 202010001;
 		else
 			return obtener(tamaño()-1).getCodAlumno() + 1;
+	}
+	
+	public boolean existeAlumno(int codAlumno) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getCodAlumno() == codAlumno) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean existeAlumnoDni(String dni) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getDni().equals(dni)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean existeMatricula(int codAlumno) {
+		ArregloMatriculas am = new ArregloMatriculas();
+		for (int i = 0; i < am.tamaño(); i++) {
+			if (am.obtener(i).getCodAlumno() == codAlumno) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public int getIndex(int codAlumno) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getCodAlumno() == codAlumno) {
+				return i;
+			}
+		}
+		
+		return -1;
 	}
 }

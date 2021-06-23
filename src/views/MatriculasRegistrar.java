@@ -14,12 +14,15 @@ import javax.swing.border.EmptyBorder;
 import arrays.ArregloAlumnos;
 import arrays.ArregloCursos;
 import arrays.ArregloMatriculas;
+import models.Alumno;
 import models.Matricula;
 import utils.ComboItem;
+import utils.DateTime;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 
 public class MatriculasRegistrar extends JDialog {
@@ -29,6 +32,8 @@ public class MatriculasRegistrar extends JDialog {
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
+	
+	private DateTime dt = new DateTime();
 
 	/**
 	 * Launch the application.
@@ -116,14 +121,19 @@ public class MatriculasRegistrar extends JDialog {
 						int codAlumno = Integer.parseInt(((ComboItem)itemCboCodAlumno).getValue());
 						Object itemCboCodCurso = cboCodCurso.getSelectedItem();
 						int codCurso = Integer.parseInt(((ComboItem)itemCboCodCurso).getValue());
-						String fecha = "16/06/2021";
-						String hora = "10:30";
+						String fecha = dt.fechaActual();
+						String hora = dt.horaActual();
 						
-						Matricula matriculaRegistrada = new Matricula(numMatricula, codAlumno, codCurso, fecha, hora);
-						
-						am.adicionar(matriculaRegistrada);
-						
-						setVisible(false);
+						if (!am.existeAlumnoMatriculado(codAlumno, codCurso)) {
+							Matricula matriculaRegistrada = new Matricula(numMatricula, codAlumno, codCurso, fecha, hora);
+							am.adicionar(matriculaRegistrada);
+							Alumno alumnoActualizado = aa.buscarPorCodigo(codAlumno);
+							alumnoActualizado.setEstado(1);
+							aa.editar(aa.getIndex(codAlumno), alumnoActualizado);
+							setVisible(false);
+						} else {
+							JOptionPane.showMessageDialog(null, "El alumno ya está matriculado en este curso.");
+						}
 					}
 				});
 				

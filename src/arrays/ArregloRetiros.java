@@ -47,6 +47,16 @@ public class ArregloRetiros {
 		grabarRetiros();
 	}
 	
+	public Retiro buscarPorCodigo(int numRetiro) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getNumRetiro() == numRetiro) {
+				return obtener(i);
+			}
+		}
+		
+		return obtener(-1);
+	}
+	
 	public ArrayList<Retiro> getRetiros() {
 		return retiros;
 	}
@@ -75,5 +85,30 @@ public class ArregloRetiros {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public int codigoCorrelativo() {
+		if (tamaño() == 0)
+			return 200001;
+		else
+			return obtener(tamaño()-1).getNumRetiro() + 1;
+	}
+	
+	public boolean existeRetiro(int numRetiro) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getNumRetiro() == numRetiro) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean existeMatriculaRetiro(int numMatricula) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getNumMatricula() == numMatricula) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

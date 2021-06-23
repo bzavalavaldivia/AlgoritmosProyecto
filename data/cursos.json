@@ -2,7 +2,7 @@
   {
     "codCurso": 123,
     "asignatura": "DESARROLLO WEB",
-    "ciclo": 5,
+    "ciclo": 0,
     "creditos": 8,
     "horas": 36
   },
@@ -12,5 +12,19 @@
     "ciclo": 0,
     "creditos": 9,
     "horas": 56
+  },
+  {
+    "codCurso": 125,
+    "asignatura": "TECNOLOGÍAS DE LA INFORMACIÓN",
+    "ciclo": 0,
+    "creditos": 10,
+    "horas": 48
+  },
+  {
+    "codCurso": 126,
+    "asignatura": "HISTORIA II",
+    "ciclo": 0,
+    "creditos": 12,
+    "horas": 96
   }
 ]

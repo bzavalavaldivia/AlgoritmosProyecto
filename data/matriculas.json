@@ -1,23 +1,30 @@
 [
   {
-    "numMatricula": 1,
+    "numMatricula": 100001,
     "codAlumno": 202010001,
     "codCurso": 123,
-    "fecha": "16/06/2021",
-    "hora": "10:30"
+    "fecha": "23/06/2021",
+    "hora": "08:20:40"
   },
   {
-    "numMatricula": 2,
+    "numMatricula": 100002,
     "codAlumno": 202010001,
     "codCurso": 124,
-    "fecha": "16/06/2021",
-    "hora": "10:30"
+    "fecha": "23/06/2021",
+    "hora": "10:43:39"
   },
   {
-    "numMatricula": 3,
+    "numMatricula": 100003,
     "codAlumno": 202010001,
-    "codCurso": 123,
-    "fecha": "16/06/2021",
-    "hora": "10:30"
+    "codCurso": 125,
+    "fecha": "23/06/2021",
+    "hora": "11:24:35"
+  },
+  {
+    "numMatricula": 100004,
+    "codAlumno": 202010002,
+    "codCurso": 126,
+    "fecha": "23/06/2021",
+    "hora": "11:29:07"
   }
 ]

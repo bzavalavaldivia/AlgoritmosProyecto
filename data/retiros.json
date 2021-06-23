@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "numRetiro": 200001,
+    "numMatricula": 100001,
+    "fecha": "23/06/2021",
+    "hora": "08:22:47"
+  },
+  {
+    "numRetiro": 200002,
+    "numMatricula": 100003,
+    "fecha": "23/06/2021",
+    "hora": "11:25:23"
+  }
+]

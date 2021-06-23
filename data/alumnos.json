@@ -7,5 +7,14 @@
     "edad": 24,
     "celular": 943189289,
     "estado": 2
+  },
+  {
+    "codAlumno": 202010002,
+    "nombres": "Juan David",
+    "apellidos": "Perez Loayza",
+    "dni": "63728192",
+    "edad": 22,
+    "celular": 928123837,
+    "estado": 1
   }
 ]

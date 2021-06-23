@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import models.Alumno;
 import models.Curso;
 
 public class ArregloCursos {
@@ -47,6 +48,29 @@ public class ArregloCursos {
 		grabarCursos();
 	}
 	
+	public Curso buscarPorCodigo(int codCurso) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getCodCurso() == codCurso) {
+				return obtener(i);
+			}
+		}
+		
+		return obtener(-1);
+	}
+	
+	public ArrayList<Alumno> obtenerAlumnos(int codCurso) {
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+		ArregloMatriculas am = new ArregloMatriculas();
+		ArregloAlumnos aa = new ArregloAlumnos();
+		for (int i = 0; i < am.tamaño(); i++) {
+			if (am.obtener(i).getCodCurso() == codCurso) {
+				alumnos.add(aa.buscarPorCodigo(am.obtener(i).getCodAlumno()));
+			}
+		}
+		
+		return alumnos;
+	}
+	
 	public ArrayList<Curso> getCursos() {
 		return cursos;
 	}
@@ -75,5 +99,14 @@ public class ArregloCursos {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public boolean existeCurso(int codCurso) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getCodCurso() == codCurso) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

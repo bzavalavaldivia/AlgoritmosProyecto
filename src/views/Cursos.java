@@ -213,18 +213,18 @@ public class Cursos extends JInternalFrame implements MouseListener {
 		
 	}
 	
-	public void mostrarInformacion(Curso curso) {
-		String info = "INFORMACIÓN DE ALUMNO\n";
+	public void mostrarInformacion(Curso c) {
+		String info = "INFORMACIÓN DEL CURSO\n";
 		info += "-------------------------------------\n";
-		info += "CÓDIGO:\n" + curso.getCodCurso() + "\n";
+		info += "CÓDIGO:\n" + c.getCodCurso() + "\n";
 		info += "\n";
-		info += "ASIGNATURA:\n" + curso.getAsignatura() + "\n";
+		info += "ASIGNATURA:\n" + c.getAsignatura() + "\n";
 		info += "\n";
-		info += "CICLO:\n" + curso.getTipoCiclo(curso.getCiclo()) + "\n";
+		info += "CICLO:\n" + c.getTipoCiclo(c.getCiclo()) + "\n";
 		info += "\n";
-		info += "CRÉDITOS:\n" + curso.getCreditos() + "\n";
+		info += "CRÉDITOS:\n" + c.getCreditos() + "\n";
 		info += "\n";
-		info += "HORAS:\n" + curso.getHoras() + "\n";
+		info += "HORAS:\n" + c.getHoras() + "\n";
 		
 		JOptionPane.showMessageDialog(null, info);
 	}

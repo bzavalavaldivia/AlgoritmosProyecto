@@ -47,6 +47,16 @@ public class ArregloMatriculas {
 		grabarMatriculas();
 	}
 	
+	public Matricula buscarPorCodigo(int numMatricula) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getNumMatricula() == numMatricula) {
+				return obtener(i);
+			}
+		}
+		
+		return obtener(-1);
+	}
+	
 	public ArrayList<Matricula> getMatriculas() {
 		return matriculas;
 	}
@@ -82,5 +92,23 @@ public class ArregloMatriculas {
 			return 100001;
 		else
 			return obtener(tamaño()-1).getNumMatricula() + 1;
+	}
+	
+	public boolean existeMatricula(int numMatricula) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getNumMatricula() == numMatricula) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean existeAlumnoMatriculado(int codAlumno, int codCurso) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getCodAlumno() == codAlumno && obtener(i).getCodCurso() == codCurso) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

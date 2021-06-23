@@ -124,6 +124,7 @@ public class AlumnosEditar extends JDialog {
 		contentPanel.add(lblEstado);
 		
 		JComboBox cboEstado = new JComboBox();
+		cboEstado.setEnabled(false);
 		cboEstado.setFont(new Font("Roboto", Font.PLAIN, 14));
 		cboEstado.setModel(new DefaultComboBoxModel(new String[] {"REGISTRADO", "MATRICULADO", "RETIRADO"}));
 		cboEstado.setBackground(new Color(255, 255, 255));

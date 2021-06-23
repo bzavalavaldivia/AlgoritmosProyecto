@@ -8,7 +8,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import arrays.ArregloAlumnos;
+import arrays.ArregloCursos;
 import arrays.ArregloMatriculas;
+import models.Alumno;
+import models.Curso;
 import models.Matricula;
 import utils.GestionCeldas;
 
@@ -37,6 +40,7 @@ public class Matriculas extends JInternalFrame implements MouseListener {
 	private JTable table;
 	private DefaultTableModel tableModel;
 	private ArregloAlumnos aa = new ArregloAlumnos();
+	private ArregloCursos ac = new ArregloCursos();
 	private ArregloMatriculas am = new ArregloMatriculas();
 
 	/**
@@ -126,14 +130,14 @@ public class Matriculas extends JInternalFrame implements MouseListener {
 	
 	void ajustarAnchoColumnas() {
 		TableColumnModel tcm = table.getColumnModel();
-		tcm.getColumn(0).setPreferredWidth(anchoColumna(10));  // NÚMERO
-		tcm.getColumn(1).setPreferredWidth(anchoColumna(15));  // CÓD. ALUMNO
-		tcm.getColumn(2).setPreferredWidth(anchoColumna(15));  // CÓD. CURSO
-		tcm.getColumn(3).setPreferredWidth(anchoColumna(10));  // FECHA
-		tcm.getColumn(4).setPreferredWidth(anchoColumna(5));  // HORA
-		tcm.getColumn(5).setPreferredWidth(anchoColumna(3));  // CONSULTAR
-		tcm.getColumn(6).setPreferredWidth(anchoColumna(3));  // EDITAR
-		tcm.getColumn(7).setPreferredWidth(anchoColumna(3));  // ELIMINAR
+		tcm.getColumn(0).setPreferredWidth(anchoColumna(6));  // NÚMERO
+		tcm.getColumn(1).setPreferredWidth(anchoColumna(32));  // CÓD. ALUMNO
+		tcm.getColumn(2).setPreferredWidth(anchoColumna(25));  // CÓD. CURSO
+		tcm.getColumn(3).setPreferredWidth(anchoColumna(8));  // FECHA
+		tcm.getColumn(4).setPreferredWidth(anchoColumna(6));  // HORA
+		tcm.getColumn(5).setPreferredWidth(anchoColumna(1));  // CONSULTAR
+		tcm.getColumn(6).setPreferredWidth(anchoColumna(1));  // EDITAR
+		tcm.getColumn(7).setPreferredWidth(anchoColumna(1));  // ELIMINAR
 		
 		tcm.getColumn(0).setCellRenderer(new GestionCeldas("texto"));	// NÚMERO
 		tcm.getColumn(1).setCellRenderer(new GestionCeldas("texto"));	// CÓD. ALUMNO
@@ -157,10 +161,12 @@ public class Matriculas extends JInternalFrame implements MouseListener {
 		Matricula m;
 		for (int i=0; i<am.tamaño(); i++) {
 			m = am.obtener(i);
+			Alumno a = aa.buscarPorCodigo(m.getCodAlumno());
+			Curso c = ac.buscarPorCodigo(m.getCodCurso());
 			Object[] fila = {
 						m.getNumMatricula(),
-						m.getCodAlumno(),
-						m.getCodCurso(),
+						a.getCodAlumno() + " - " + a.getNombres() + " " + a.getApellidos(),
+						c.getCodCurso() + " - " + c.getAsignatura(),
 						m.getFecha(),
 						m.getHora(),
 						"Consultar",
@@ -186,8 +192,8 @@ public class Matriculas extends JInternalFrame implements MouseListener {
 			MatriculasEditar me = new MatriculasEditar(am, fila);
 			refresh(me);
 		} else if (columna == 7) {
-			AlumnosEliminar ael = new AlumnosEliminar(aa, fila);
-			refresh(ael);
+			MatriculasEliminar mel = new MatriculasEliminar(am, fila);
+			refresh(mel);
 		}
 	}
 
@@ -215,18 +221,20 @@ public class Matriculas extends JInternalFrame implements MouseListener {
 		
 	}
 	
-	public void mostrarInformacion(Matricula matricula) {
-		String info = "INFORMACIÓN DE ALUMNO\n";
+	public void mostrarInformacion(Matricula m) {
+		Alumno a = aa.buscarPorCodigo(m.getCodAlumno());
+		Curso c = ac.buscarPorCodigo(m.getCodCurso());
+		String info = "INFORMACIÓN DE LA MATRÍCULA\n";
 		info += "-------------------------------------\n";
-		info += "NÚMERO:\n" + matricula.getNumMatricula() + "\n";
+		info += "NÚMERO:\n" + m.getNumMatricula() + "\n";
 		info += "\n";
-		info += "CÓD. ALUMNO:\n" + matricula.getCodAlumno() + "\n";
+		info += "CÓD. ALUMNO:\n" + a.getCodAlumno() + " - " + a.getNombres() + " " + a.getApellidos() + "\n";
 		info += "\n";
-		info += "CÓD. CURSO:\n" + matricula.getCodCurso() + "\n";
+		info += "CÓD. CURSO:\n" + c.getCodCurso() + " - " + c.getAsignatura() + "\n";
 		info += "\n";
-		info += "FECHA:\n" + matricula.getFecha() + "\n";
+		info += "FECHA:\n" + m.getFecha() + "\n";
 		info += "\n";
-		info += "HORA:\n" + matricula.getHora() + "\n";
+		info += "HORA:\n" + m.getHora() + "\n";
 		
 		JOptionPane.showMessageDialog(null, info);
 	}

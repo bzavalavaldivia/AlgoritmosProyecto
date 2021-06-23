@@ -18,6 +18,7 @@ import models.Curso;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
@@ -65,7 +66,6 @@ public class CursosRegistrar extends JDialog {
 		contentPanel.add(lblCodigo);
 		
 		txtCodigo = new JTextField();
-		txtCodigo.setText("0");
 		txtCodigo.setFont(new Font("Roboto", Font.PLAIN, 14));
 		txtCodigo.setColumns(10);
 		txtCodigo.setBounds(10, 34, 316, 30);
@@ -136,17 +136,21 @@ public class CursosRegistrar extends JDialog {
 				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						int codigo = Integer.parseInt(txtCodigo.getText());
+						int codCurso = Integer.parseInt(txtCodigo.getText());
 						String asignatura = txtAsignatura.getText();
 						int ciclo = cboCiclo.getSelectedIndex();
 						int creditos = Integer.parseInt(txtCreditos.getText());
 						int horas = Integer.parseInt(txtHoras.getText());
 						
-						Curso cursoRegistrado = new Curso(codigo, asignatura, ciclo, creditos, horas);
-						
-						ac.adicionar(cursoRegistrado);
-						
-						setVisible(false);
+						if (!ac.existeCurso(codCurso)) {
+							Curso cursoRegistrado = new Curso(codCurso, asignatura, ciclo, creditos, horas);
+							
+							ac.adicionar(cursoRegistrado);
+							
+							setVisible(false);
+						} else {
+							JOptionPane.showMessageDialog(null, "El código del curso ya está en uso.");
+						}
 					}
 				});
 				

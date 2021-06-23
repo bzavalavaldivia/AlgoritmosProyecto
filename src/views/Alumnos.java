@@ -161,6 +161,10 @@ public class Alumnos extends JInternalFrame implements MouseListener {
 		Alumno a;
 		for (int i=0; i<aa.tamaño(); i++) {
 			a = aa.obtener(i);
+			String btnEliminar = null;
+			if (a.getEstado() == 0) {
+				btnEliminar = "Eliminar";
+			}
 			Object[] fila = {
 						a.getCodAlumno(),
 						a.getNombres(),
@@ -171,7 +175,7 @@ public class Alumnos extends JInternalFrame implements MouseListener {
 						a.getTipoEstado(a.getEstado()),
 						"Consultar",
 						"Editar",
-						"Eliminar"
+						btnEliminar
 					  };
 			tableModel.addRow(fila);
 			table.setRowHeight(i, 30);
@@ -221,22 +225,22 @@ public class Alumnos extends JInternalFrame implements MouseListener {
 		
 	}
 	
-	public void mostrarInformacion(Alumno alumno) {
-		String info = "INFORMACIÓN DE ALUMNO\n";
+	public void mostrarInformacion(Alumno a) {
+		String info = "INFORMACIÓN DEL ALUMNO\n";
 		info += "-------------------------------------\n";
-		info += "CÓDIGO:\n" + alumno.getCodAlumno() + "\n";
+		info += "CÓDIGO:\n" + a.getCodAlumno() + "\n";
 		info += "\n";
-		info += "NOMBRES:\n" + alumno.getNombres() + "\n";
+		info += "NOMBRES:\n" + a.getNombres() + "\n";
 		info += "\n";
-		info += "APELLIDOS:\n" + alumno.getApellidos() + "\n";
+		info += "APELLIDOS:\n" + a.getApellidos() + "\n";
 		info += "\n";
-		info += "DNI:\n" + alumno.getDni() + "\n";
+		info += "DNI:\n" + a.getDni() + "\n";
 		info += "\n";
-		info += "EDAD:\n" + alumno.getEdad() + "\n";
+		info += "EDAD:\n" + a.getEdad() + "\n";
 		info += "\n";
-		info += "CELULAR:\n" + alumno.getCelular() + "\n";
+		info += "CELULAR:\n" + a.getCelular() + "\n";
 		info += "\n";
-		info += "ESTADO:\n" + alumno.getTipoEstado(alumno.getEstado()) + "\n";
+		info += "ESTADO:\n" + a.getTipoEstado(a.getEstado()) + "\n";
 		
 		JOptionPane.showMessageDialog(null, info);
 	}

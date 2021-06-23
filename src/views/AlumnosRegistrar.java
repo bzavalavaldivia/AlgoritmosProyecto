@@ -17,6 +17,7 @@ import models.Alumno;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
@@ -142,11 +143,13 @@ public class AlumnosRegistrar extends JDialog {
 						int celular = Integer.parseInt(txtCelular.getText());
 						int estado = 0;
 						
-						Alumno alumnoRegistrado = new Alumno(codigo, nombres, apellidos, dni, edad, celular, estado);
-						
-						aa.adicionar(alumnoRegistrado);
-						
-						setVisible(false);
+						if (!aa.existeAlumnoDni(dni)) {
+							Alumno alumnoRegistrado = new Alumno(codigo, nombres, apellidos, dni, edad, celular, estado);
+							aa.adicionar(alumnoRegistrado);
+							setVisible(false);
+						} else {
+							JOptionPane.showMessageDialog(null, "El campo DNI ya está en uso.");
+						}
 					}
 				});
 				
