@@ -52,7 +52,7 @@ public class MatriculasEditar extends JDialog {
 	public MatriculasEditar(ArregloMatriculas am, int idMatricula) {
 		this.matricula = am.obtener(idMatricula);
 		setBounds(100, 100, 350, 225);
-		setTitle("Editar Matr\u00EDcula - 0");
+		setTitle("Editar Matr\u00EDcula - " + matricula.getNumMatricula());
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,6 +65,7 @@ public class MatriculasEditar extends JDialog {
 		contentPanel.add(lblCodAlumno);
 		
 		JComboBox cboCodAlumno = new JComboBox();
+		cboCodAlumno.setEnabled(false);
 		cboCodAlumno.setFont(new Font("Roboto", Font.PLAIN, 14));
 		
 		ArregloAlumnos aa = new ArregloAlumnos();
@@ -82,6 +83,7 @@ public class MatriculasEditar extends JDialog {
 		contentPanel.add(lblCodCurso);
 		
 		JComboBox cboCodCurso = new JComboBox();
+		cboCodCurso.setEnabled(false);
 		cboCodCurso.setFont(new Font("Roboto", Font.PLAIN, 14));
 		
 		ArregloCursos ac = new ArregloCursos();
@@ -120,11 +122,8 @@ public class MatriculasEditar extends JDialog {
 						int codCurso = Integer.parseInt(((ComboItem)itemCboCodCurso).getValue());
 						String fecha = matricula.getFecha();
 						String hora = matricula.getHora();
-						
 						Matricula matriculaActualizada = new Matricula(numMatricula, codAlumno, codCurso, fecha, hora);
-						
 						am.editar(idMatricula, matriculaActualizada);
-						
 						setVisible(false);
 					}
 				});

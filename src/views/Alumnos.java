@@ -161,10 +161,6 @@ public class Alumnos extends JInternalFrame implements MouseListener {
 		Alumno a;
 		for (int i=0; i<aa.tamaño(); i++) {
 			a = aa.obtener(i);
-			String btnEliminar = null;
-			if (a.getEstado() == 0) {
-				btnEliminar = "Eliminar";
-			}
 			Object[] fila = {
 						a.getCodAlumno(),
 						a.getNombres(),
@@ -175,7 +171,7 @@ public class Alumnos extends JInternalFrame implements MouseListener {
 						a.getTipoEstado(a.getEstado()),
 						"Consultar",
 						"Editar",
-						btnEliminar
+						"Eliminar"
 					  };
 			tableModel.addRow(fila);
 			table.setRowHeight(i, 30);
@@ -196,8 +192,12 @@ public class Alumnos extends JInternalFrame implements MouseListener {
 			AlumnosEditar ae = new AlumnosEditar(aa, fila);
 			refresh(ae);
 		} else if (columna == 9) {
-			AlumnosEliminar ael = new AlumnosEliminar(aa, fila);
-			refresh(ael);
+			if (aa.obtener(fila).getEstado() == 0) {
+				AlumnosEliminar ael = new AlumnosEliminar(aa, fila);
+				refresh(ael);
+			} else {
+				JOptionPane.showMessageDialog(null, "No puedes eliminar a un alumno MATRICULADO o RETIRADO.");
+			}
 		}
 	}
 

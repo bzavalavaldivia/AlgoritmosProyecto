@@ -135,20 +135,23 @@ public class AlumnosRegistrar extends JDialog {
 				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						int codigo = aa.codigoCorrelativo();
-						String nombres = txtNombres.getText();
-						String apellidos = txtApellidos.getText();
-						String dni = txtDni.getText();
-						int edad = Integer.parseInt(txtEdad.getText());
-						int celular = Integer.parseInt(txtCelular.getText());
-						int estado = 0;
-						
-						if (!aa.existeAlumnoDni(dni)) {
-							Alumno alumnoRegistrado = new Alumno(codigo, nombres, apellidos, dni, edad, celular, estado);
-							aa.adicionar(alumnoRegistrado);
-							setVisible(false);
+						if (validarCampos()) {
+							int codAlumno = aa.codigoCorrelativo();
+							String nombres = txtNombres.getText();
+							String apellidos = txtApellidos.getText();
+							String dni = txtDni.getText();
+							int edad = Integer.parseInt(txtEdad.getText());
+							int celular = Integer.parseInt(txtCelular.getText());
+							int estado = 0;
+							if (!aa.existeAlumnoDni(dni)) {
+								Alumno alumnoRegistrado = new Alumno(codAlumno, nombres, apellidos, dni, edad, celular, estado);
+								aa.adicionar(alumnoRegistrado);
+								setVisible(false);
+							} else {
+								JOptionPane.showMessageDialog(null, "El campo DNI ya está en uso.");
+							}
 						} else {
-							JOptionPane.showMessageDialog(null, "El campo DNI ya está en uso.");
+							JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
 						}
 					}
 				});
@@ -175,5 +178,17 @@ public class AlumnosRegistrar extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private boolean validarCampos() {
+		String nombres = txtNombres.getText();
+		String apellidos = txtApellidos.getText();
+		String dni = txtDni.getText();
+		String edad = txtEdad.getText();
+		String celular = txtCelular.getText();
+		if (nombres.equals("") && apellidos.equals("") && dni.equals("") && edad.equals("") && celular.equals("")) {
+			return false;
+		}
+		return true;
 	}
 }

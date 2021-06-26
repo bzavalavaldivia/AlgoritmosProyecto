@@ -63,7 +63,7 @@ public class RetirosRegistrar extends JDialog {
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	public RetirosRegistrar(ArregloRetiros ar) {
 		setBounds(100, 100, 350, 300);
-		setTitle("Registrar Matr\u00EDcula");
+		setTitle("Registrar Retiro");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -97,7 +97,7 @@ public class RetirosRegistrar extends JDialog {
 		contentPanel.add(lblCodAlumno);
 		
 		JComboBox cboCodAlumno = new JComboBox();
-		cboCodAlumno.setModel(new DefaultComboBoxModel(new String[] {a.getNombres() + " " + a.getApellidos()}));
+		cboCodAlumno.setModel(new DefaultComboBoxModel(new String[] {a.getCodAlumno() + " - " + a.getNombres() + " " + a.getApellidos()}));
 		cboCodAlumno.setFont(new Font("Roboto", Font.PLAIN, 14));
 		cboCodAlumno.setBackground(Color.WHITE);
 		cboCodAlumno.setBounds(10, 96, 316, 30);
@@ -109,7 +109,7 @@ public class RetirosRegistrar extends JDialog {
 		contentPanel.add(lblCodCurso);
 		
 		JComboBox cboCodCurso = new JComboBox();
-		cboCodCurso.setModel(new DefaultComboBoxModel(new String[] {c.getAsignatura()}));
+		cboCodCurso.setModel(new DefaultComboBoxModel(new String[] {c.getCodCurso() + " - " + c.getAsignatura()}));
 		cboCodCurso.setFont(new Font("Roboto", Font.PLAIN, 14));
 		cboCodCurso.setBackground(Color.WHITE);
 		cboCodCurso.setBounds(10, 159, 316, 30);
@@ -120,10 +120,10 @@ public class RetirosRegistrar extends JDialog {
 				int numMatricula = Integer.parseInt(((ComboItem)cboNumMatricula.getSelectedItem()).getValue());
 				
 				Alumno a = aa.buscarPorCodigo(am.buscarPorCodigo(numMatricula).getCodAlumno());
-				cboCodAlumno.setModel(new DefaultComboBoxModel(new String[] {a.getNombres() + " " + a.getApellidos()}));
+				cboCodAlumno.setModel(new DefaultComboBoxModel(new String[] {a.getCodAlumno() + " - " + a.getNombres() + " " + a.getApellidos()}));
 				
 				Curso c = ac.buscarPorCodigo(am.buscarPorCodigo(numMatricula).getCodCurso());
-				cboCodCurso.setModel(new DefaultComboBoxModel(new String[] {c.getAsignatura()}));
+				cboCodCurso.setModel(new DefaultComboBoxModel(new String[] {c.getCodCurso() + " - " + c.getAsignatura()}));
 			}
 		});
 
@@ -149,8 +149,7 @@ public class RetirosRegistrar extends JDialog {
 						int numMatricula = Integer.parseInt(((ComboItem)itemCboNumMatricula).getValue());
 						String fecha = dt.fechaActual();
 						String hora = dt.horaActual();
-						
-						if (!ar.existeMatriculaRetiro(numMatricula)) {
+						if (!ar.existeRetiroMatricula(numMatricula)) {
 							Retiro retiroRegistrado = new Retiro(numRetiro, numMatricula, fecha, hora);
 							ar.adicionar(retiroRegistrado);
 							int codAlumno = am.buscarPorCodigo(numMatricula).getCodAlumno();

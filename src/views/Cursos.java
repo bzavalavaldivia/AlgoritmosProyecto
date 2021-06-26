@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import arrays.ArregloCursos;
+import arrays.ArregloMatriculas;
 import models.Curso;
 import utils.GestionCeldas;
 
@@ -36,6 +37,7 @@ public class Cursos extends JInternalFrame implements MouseListener {
 	private JTable table;
 	private DefaultTableModel tableModel;
 	private ArregloCursos ac = new ArregloCursos();
+	private ArregloMatriculas am = new ArregloMatriculas();
 
 	/**
 	 * Launch the application.
@@ -184,8 +186,12 @@ public class Cursos extends JInternalFrame implements MouseListener {
 			CursosEditar ce = new CursosEditar(ac, fila);
 			refresh(ce);
 		} else if (columna == 7) {
-			CursosEliminar cel = new CursosEliminar(ac, fila);
-			refresh(cel);
+			if (!am.existeMatriculaCurso(ac.obtener(fila).getCodCurso())) {
+				CursosEliminar cel = new CursosEliminar(ac, fila);
+				refresh(cel);
+			} else {
+				JOptionPane.showMessageDialog(null, "Primero elimina las matrículas relacionadas con este curso	.");
+			}
 		}
 	}
 

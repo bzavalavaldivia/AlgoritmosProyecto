@@ -123,7 +123,6 @@ public class MatriculasRegistrar extends JDialog {
 						int codCurso = Integer.parseInt(((ComboItem)itemCboCodCurso).getValue());
 						String fecha = dt.fechaActual();
 						String hora = dt.horaActual();
-						
 						if (!am.existeAlumnoMatriculado(codAlumno, codCurso)) {
 							Matricula matriculaRegistrada = new Matricula(numMatricula, codAlumno, codCurso, fecha, hora);
 							am.adicionar(matriculaRegistrada);

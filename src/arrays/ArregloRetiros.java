@@ -103,7 +103,7 @@ public class ArregloRetiros {
 		return false;
 	}
 	
-	public boolean existeMatriculaRetiro(int numMatricula) {
+	public boolean existeRetiroMatricula(int numMatricula) {
 		for (int i = 0; i < tamaño(); i++) {
 			if (obtener(i).getNumMatricula() == numMatricula) {
 				return true;

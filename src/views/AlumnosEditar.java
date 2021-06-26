@@ -17,6 +17,7 @@ import models.Alumno;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -155,19 +156,24 @@ public class AlumnosEditar extends JDialog {
 				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						int codigo = alumno.getCodAlumno();
-						String nombres = txtNombres.getText();
-						String apellidos = txtApellidos.getText();
-						String dni = txtDni.getText();
-						int edad = Integer.parseInt(txtEdad.getText());
-						int celular = Integer.parseInt(txtCelular.getText());
-						int estado = cboEstado.getSelectedIndex();
-						
-						Alumno alumnoActualizado = new Alumno(codigo, nombres, apellidos, dni, edad, celular, estado);
-						
-						aa.editar(idAlumno, alumnoActualizado);
-						
-						setVisible(false);
+						if (validarCampos()) {
+							int codAlumno = alumno.getCodAlumno();
+							String nombres = txtNombres.getText();
+							String apellidos = txtApellidos.getText();
+							String dni = txtDni.getText();
+							int edad = Integer.parseInt(txtEdad.getText());
+							int celular = Integer.parseInt(txtCelular.getText());
+							int estado = cboEstado.getSelectedIndex();
+							if (!aa.existeAlumnoDni(dni) || (aa.existeAlumnoDni(dni) && alumno.getDni().equals(dni))) {
+								Alumno alumnoActualizado = new Alumno(codAlumno, nombres, apellidos, dni, edad, celular, estado);
+								aa.editar(idAlumno, alumnoActualizado);
+								setVisible(false);
+							} else {
+								JOptionPane.showMessageDialog(null, "El campo DNI ya está en uso.");
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+						}
 					}
 				});
 				
@@ -193,5 +199,17 @@ public class AlumnosEditar extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private boolean validarCampos() {
+		String nombres = txtNombres.getText();
+		String apellidos = txtApellidos.getText();
+		String dni = txtDni.getText();
+		String edad = txtEdad.getText();
+		String celular = txtCelular.getText();
+		if (nombres.equals("") && apellidos.equals("") && dni.equals("") && edad.equals("") && celular.equals("")) {
+			return false;
+		}
+		return true;
 	}
 }

@@ -57,7 +57,7 @@ public class RetirosEliminar extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("\u00BFEst\u00E1s seguro que deseas eliminar este retro?");
+			JLabel lblNewLabel = new JLabel("\u00BFEst\u00E1s seguro que deseas eliminar este retiro?");
 			lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
 			lblNewLabel.setBounds(10, 10, 416, 30);
 			contentPanel.add(lblNewLabel);

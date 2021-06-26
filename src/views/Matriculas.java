@@ -10,6 +10,7 @@ import javax.swing.table.TableColumnModel;
 import arrays.ArregloAlumnos;
 import arrays.ArregloCursos;
 import arrays.ArregloMatriculas;
+import arrays.ArregloRetiros;
 import models.Alumno;
 import models.Curso;
 import models.Matricula;
@@ -42,6 +43,7 @@ public class Matriculas extends JInternalFrame implements MouseListener {
 	private ArregloAlumnos aa = new ArregloAlumnos();
 	private ArregloCursos ac = new ArregloCursos();
 	private ArregloMatriculas am = new ArregloMatriculas();
+	private ArregloRetiros ar = new ArregloRetiros();
 
 	/**
 	 * Launch the application.
@@ -192,8 +194,12 @@ public class Matriculas extends JInternalFrame implements MouseListener {
 			MatriculasEditar me = new MatriculasEditar(am, fila);
 			refresh(me);
 		} else if (columna == 7) {
-			MatriculasEliminar mel = new MatriculasEliminar(am, fila);
-			refresh(mel);
+			if (!ar.existeRetiroMatricula(am.obtener(fila).getNumMatricula())) {
+				MatriculasEliminar mel = new MatriculasEliminar(am, fila);
+				refresh(mel);
+			} else {
+				JOptionPane.showMessageDialog(null, "Primero elimina el retiro relacionado con esta matrícula.");
+			}
 		}
 	}
 

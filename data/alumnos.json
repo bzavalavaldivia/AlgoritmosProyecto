@@ -6,7 +6,7 @@
     "dni": "72807811",
     "edad": 24,
     "celular": 943189289,
-    "estado": 2
+    "estado": 1
   },
   {
     "codAlumno": 202010002,
@@ -16,5 +16,14 @@
     "edad": 22,
     "celular": 928123837,
     "estado": 1
+  },
+  {
+    "codAlumno": 202010003,
+    "nombres": "Johan Fernando",
+    "apellidos": "Gonzales Silva",
+    "dni": "74239182",
+    "edad": 25,
+    "celular": 937182374,
+    "estado": 0
   }
 ]

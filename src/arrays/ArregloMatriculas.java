@@ -111,4 +111,13 @@ public class ArregloMatriculas {
 		}
 		return false;
 	}
+	
+	public boolean existeMatriculaCurso(int codCurso) {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).getCodCurso() == codCurso) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

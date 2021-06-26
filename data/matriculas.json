@@ -26,5 +26,12 @@
     "codCurso": 126,
     "fecha": "23/06/2021",
     "hora": "11:29:07"
+  },
+  {
+    "numMatricula": 100005,
+    "codAlumno": 202010001,
+    "codCurso": 126,
+    "fecha": "23/06/2021",
+    "hora": "11:50:35"
   }
 ]

@@ -123,6 +123,7 @@ public class AlumnosMatriculaVigente extends JInternalFrame {
 			posFila --;
 		tableModel.setRowCount(0);
 		Alumno a;
+		int row = 0;
 		for (int i=0; i<aa.tamaño(); i++) {
 			a = aa.obtener(i);
 			if (aa.existeMatricula(a.getCodAlumno())) {
@@ -135,9 +136,11 @@ public class AlumnosMatriculaVigente extends JInternalFrame {
 						a.getCelular(),
 						a.getTipoEstado(a.getEstado())
 					  };
-			tableModel.addRow(fila);
+				tableModel.addRow(fila);
+				table.setRowHeight(row, 30);
+				System.out.println(row);
+				row++;
 			}
-			table.setRowHeight(0, 30);
 		}
 		if (aa.tamaño() > 0)
 			table.getSelectionModel().setSelectionInterval(posFila, posFila);

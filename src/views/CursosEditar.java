@@ -17,6 +17,7 @@ import models.Curso;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -142,17 +143,22 @@ public class CursosEditar extends JDialog {
 				
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						int codigo = Integer.parseInt(txtCodigo.getText());
-						String asignatura = txtAsignatura.getText();
-						int ciclo = cboCiclo.getSelectedIndex();
-						int creditos = Integer.parseInt(txtCreditos.getText());
-						int horas = Integer.parseInt(txtHoras.getText());
-						
-						Curso cursoActualizado = new Curso(codigo, asignatura, ciclo, creditos, horas);
-						
-						ac.editar(idCurso, cursoActualizado);
-						
-						setVisible(false);
+						if (validarCampos()) {
+							int codCurso = Integer.parseInt(txtCodigo.getText());
+							String asignatura = txtAsignatura.getText();
+							int ciclo = cboCiclo.getSelectedIndex();
+							int creditos = Integer.parseInt(txtCreditos.getText());
+							int horas = Integer.parseInt(txtHoras.getText());
+							if (!ac.existeCurso(codCurso) || (ac.existeCurso(codCurso) && curso.getCodCurso() == codCurso)) {
+								Curso cursoActualizado = new Curso(codCurso, asignatura, ciclo, creditos, horas);
+								ac.editar(idCurso, cursoActualizado);
+								setVisible(false);
+							} else {
+								JOptionPane.showMessageDialog(null, "El código del curso ya está en uso.");
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "Todos los campos son requeridos.");
+						}
 					}
 				});
 				
@@ -178,5 +184,16 @@ public class CursosEditar extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private boolean validarCampos() {
+		String codCurso = txtCodigo.getText();
+		String asignatura = txtAsignatura.getText();
+		String creditos = txtCreditos.getText();
+		String horas = txtHoras.getText();
+		if (codCurso.equals("") && asignatura.equals("") && creditos.equals("") && horas.equals("")) {
+			return false;
+		}
+		return true;
 	}
 }
